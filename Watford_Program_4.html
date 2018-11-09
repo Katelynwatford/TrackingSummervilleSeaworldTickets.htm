@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		  <title>Tracking Summerville Seaworld Tickets</title>
+		</head>
+		
+		<body>
+			<script type="text/javascript">
+			
+				// FileName:Watford_Program_4.html
+				// Programer: Katelyn Watford
+				// Purpose: Tracking Summerville Seaworld Ticket count category count and outputing all its totals
+				
+				//NOTES:
+				
+				//Global Var:
+				var PRE_FORMAT = " <pre >";
+				var END_FORMAT = " </ prev>";
+				
+				var ticketType;
+				var ticketPrice = 0;
+				
+				var totalTickets = 0;
+				var MAX_TICKETS = 10;
+				
+				//Counters:
+				var adultCount = 0;	
+				var juniorCount = 0;
+				var toddlerCount = 0;	
+						
+				//Categories:
+				var ADULTS = "A";			
+				var JUNIORS = "J";
+				var TODDLER = "T";
+				
+				//Price Per Ticket
+				var ADULT_PRICE = 11.50;
+				var JUNIOR_PRICE = 7.50;
+				var TODDLER_PRICE = 0;
+				
+				//outputs
+				var MAX_SEAT_COUNT = 20; //just a random number of seats in the arena
+				var numTickets = 0;
+				
+				var currentOrder = 0;
+				var totalSales = 0;
+				var extraSeats = 0;
+				
+				var today = new Date();
+								
+				//Input:
+				
+				//Table for customer to choose from:
+				document.write(PRE_FORMAT);
+				document.writeln("Categories\tPrice");
+				document.writeln("Adult", "\t\t $", ADULT_PRICE.toFixed(2));
+				document.writeln("Junior", "\t\t $", JUNIOR_PRICE.toFixed(2));
+				document.writeln("Toddler", "\t\t $", TODDLER_PRICE);
+				document.write(END_FORMAT);
+				
+				//alert to look at table
+				alert("Please look at the table and then enter only one category at a time");
+				
+				
+				//Calculations:
+				
+				while (totalTickets < MAX_SEAT_COUNT) 
+				{
+
+					
+						ticketType = prompt("Enter A, J or T");	
+						ticketType = ticketType.toUpperCase();
+						
+						while(ticketType != ADULTS && ticketType != JUNIORS && ticketType != TODDLER)
+						{
+							ticketType = prompt("Please enter A, J or T");	
+							ticketType = ticketType.toUpperCase();							
+						}
+						
+						numTickets = prompt("How many tickets would you like?");
+						numTickets = parseInt(numTickets);
+						
+						if (numTickets > MAX_TICKETS) 
+						{
+							numTickets = MAX_TICKETS;
+							alert("Only " + MAX_TICKETS + " tickets can be sold!");
+						}
+
+						if (ticketType == ADULTS)
+						{
+							ticketPrice = ADULT_PRICE;
+							adultCount += numTickets;
+						}
+						else  if (ticketType == JUNIORS)
+						{
+							ticketPrice = JUNIOR_PRICE;
+							juniorCount +=numTickets;
+						}
+						else  if (ticketType == TODDLER)
+						{
+							ticketPrice = TODDLER_PRICE;
+							toddlerCount += numTickets;
+						}
+						
+					currentOrder = ticketPrice * numTickets;
+					totalSales  += currentOrder;
+					totalTickets += numTickets;
+					
+					document.write("<br>You owe this much: $" + currentOrder.toFixed(2));
+						
+						
+				}
+				
+				
+				//Math for the while if else:
+				extraSeats = totalTickets - MAX_SEAT_COUNT;
+				
+				//Output:
+				document.write(PRE_FORMAT);
+				document.write("<center>");
+				document.write("<br><h2>TICKET SALES REPORT:" + " " + today + "</h2>");
+				
+				document.write("<br>");
+				
+				document.writeln("<br><b>Seat capcity:" + "</b>" + " " + MAX_SEAT_COUNT + "\t\t" + "<b>" + "Extra seats:" + "</b>"+ " " + extraSeats + "\t\t" + "<b>" + "Total Sold:" + "</b>" + " " + totalTickets);
+				//document.write("<br>Extra seats:" + extraSeats);
+				//document.write("<br>Total Sold:" + totalTickets);
+				
+				document.write("<br>");
+				
+				document.writeln("<br><b>Adults:" + "</b>" + " " + adultCount + "\t\t <b>Juniors:" + "</b>" + " " + juniorCount + "\t\t <b>Toddlers:" + "</b>" + " " + toddlerCount);
+				//document.write("<br>Juniors:" + juniorCount);				
+				//document.write("<br>Toddlers:" + toddlerCount);
+				
+				document.write("<br>");				
+
+				document.write("<br><b>Total Gross Sales For Today: $" + totalSales.toFixed(2) + "</b>");
+				document.write("</center>");
+				document.write(END_FORMAT);
+				
+				
+			</script>
+		</body>
+</html>
